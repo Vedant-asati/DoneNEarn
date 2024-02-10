@@ -8,6 +8,7 @@ import { HDNodeWallet } from "ethers/wallet";
 import Test from "./test";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CreateArea from "./components/createarea";
 //
 import ContractWhitelist from "../../../backend/artifacts/contracts/Whitelist.sol/Whitelist.json"
 import ContractSiyaNFT from "../../../backend/artifacts/contracts/SiyaNFT.sol/SiyaNFT.json"
@@ -285,7 +286,7 @@ export default function Home() {
       {hasProvider && <button onClick={handleConnect}>Show Address</button>}
       {showAccounts && wallet.accounts && <div>{wallet.accounts[0]}</div>}
       {/*  */}
-
+      <CreateArea state={state}/>
       <Test state={state} />
       {/* <Footer /> */}
     </>
