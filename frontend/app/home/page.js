@@ -6,212 +6,21 @@ import { BrowserProvider, parseUnits } from "ethers";
 import { HDNodeWallet } from "ethers/wallet";
 //
 import Test from "./test";
+import Test2 from "./test_event_auth";
+import Test3 from "./test_event_todo";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CreateArea from "./components/createarea";
 //
 import ContractWhitelist from "../../../backend/artifacts/contracts/Whitelist.sol/Whitelist.json"
 import ContractSiyaNFT from "../../../backend/artifacts/contracts/SiyaNFT.sol/SiyaNFT.json"
+import e_abi from "./e_abi";
+
 const whitelistAddress = "0xefFa170262827AD3238Df8f24b0040AEe073C03E";
-const TodoListAddress = "0x096D9aC7A8bb03e90B8b28b74383A68437D53499";
+const TodoListAddress = "0xC124C3C27340467a8124c8a7a3bcf63416cdF3E6";
 const abiWhitelist = ContractWhitelist.abi;
 const abiSiyaNFT = ContractSiyaNFT.abi;
-const abiTodoList = [
-  {
-      "inputs": [],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-  },
-  {
-      "inputs": [],
-      "name": "AuthInstance",
-      "outputs": [
-          {
-              "internalType": "contract Authenticator",
-              "name": "",
-              "type": "address"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-  },
-  {
-      "inputs": [],
-      "name": "OWNER",
-      "outputs": [
-          {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-  },
-  {
-      "inputs": [
-          {
-              "internalType": "string",
-              "name": "_pwd",
-              "type": "string"
-          }
-      ],
-      "name": "SignUp",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-  },
-  {
-      "inputs": [],
-      "name": "WhiteContractAdd",
-      "outputs": [
-          {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-  },
-  {
-      "inputs": [],
-      "name": "WhiteInstance",
-      "outputs": [
-          {
-              "internalType": "contract Whitelist",
-              "name": "",
-              "type": "address"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-  },
-  {
-      "inputs": [
-          {
-              "internalType": "uint256",
-              "name": "_index",
-              "type": "uint256"
-          }
-      ],
-      "name": "claim",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-  },
-  {
-      "inputs": [
-          {
-              "internalType": "string",
-              "name": "_title",
-              "type": "string"
-          },
-          {
-              "internalType": "string",
-              "name": "_text",
-              "type": "string"
-          }
-      ],
-      "name": "createTodo",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-  },
-  {
-      "inputs": [
-          {
-              "internalType": "uint256",
-              "name": "_index",
-              "type": "uint256"
-          }
-      ],
-      "name": "deleteTodo",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-  },
-  {
-      "inputs": [],
-      "name": "getLoginData",
-      "outputs": [
-          {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-  },
-  {
-      "inputs": [],
-      "name": "locked",
-      "outputs": [
-          {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-  },
-  {
-      "inputs": [
-          {
-              "internalType": "uint256",
-              "name": "_index",
-              "type": "uint256"
-          }
-      ],
-      "name": "markCompleted",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-  },
-  {
-      "inputs": [],
-      "name": "remove",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-  },
-  {
-      "inputs": [
-          {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-          }
-      ],
-      "name": "todos",
-      "outputs": [
-          {
-              "internalType": "string",
-              "name": "title",
-              "type": "string"
-          },
-          {
-              "internalType": "string",
-              "name": "text",
-              "type": "string"
-          },
-          {
-              "internalType": "bool",
-              "name": "completed",
-              "type": "bool"
-          },
-          {
-              "internalType": "bool",
-              "name": "claimed",
-              "type": "bool"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-  }
-];
+const abiTodoList = e_abi
 
 export default function Home() {
   const [state, setState] = useState({ provider: null, signer: null, contractWhite: null,contractTodo:null });
@@ -288,6 +97,8 @@ export default function Home() {
       {/*  */}
       <CreateArea state={state}/>
       <Test state={state} />
+      <Test2 state={state} />
+      <Test3 state={state} />
       {/* <Footer /> */}
     </>
   );

@@ -25,6 +25,7 @@ function CreateArea({ state }) {
     }
 
     async function submitNote(event) {
+        event.preventDefault();
         // to backend
         await setTODO(note.title, note.content);
         // to frontend
@@ -36,7 +37,6 @@ function CreateArea({ state }) {
             claimed: false
 
         });
-        event.preventDefault();
         console.log("JSR... Requested to Add Task.")
         // implement from contract
     }

@@ -1,5 +1,5 @@
     // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.10;
+    pragma solidity ^0.8.20;
 
     contract Authenticator {
         address immutable public OWNER;
@@ -25,6 +25,8 @@
             require(msg.sender!=OWNER, "JSR! You are the boss!!");
             _;
         }
+        //
+        event cnf_SignUp(address indexed sender, string message);
         
         function getLoginData() public view onlyWorker  returns (bytes32) {
             return LoginData[msg.sender];
@@ -33,10 +35,12 @@
             require(msg.sender!=OWNER, "JSR! You are the boss!!");
             // payable
             // require(msg.value>=1000000000,"jai siyaram ... it is not joke!!")
-            require(LoginData[msg.sender]==0x0, "JSR! No changes entertained!!");
+            // require(LoginData[msg.sender]==0x0, "JSR! No changes entertained!!");
             require(bytes(_pwd).length > 0, "JSR! Password cannot be empty!!");
             bytes32 hashedPwd = keccak256(abi.encodePacked(msg.sender,_pwd));
             LoginData[msg.sender] = hashedPwd;
+            //
+            emit cnf_SignUp(msg.sender, "Jai Siyaram! You are welcome here.");
         }
         function remove() public {
             require(LoginData[msg.sender]!=0x0,"jsr only employees can delete login info");
@@ -44,6 +48,13 @@
             // require(msg.value>=1000000000,"jai siyaram ... it is not joke!!")
             delete LoginData[msg.sender];
         }
+
+
+        //
+        // function emit_greet() public {
+        //     emit cnf_SignUp(msg.sender, "Jai Siyaram! How are you?");
+        // }
+        //
 
         // function doTask() public noReentrancy onlyWorker {
         //     require(LoginData[msg.sender]!=0x0,"jsr only employees can do task");
